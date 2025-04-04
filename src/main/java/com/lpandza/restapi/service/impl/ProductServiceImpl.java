@@ -3,9 +3,11 @@ package com.lpandza.restapi.service.impl;
 import com.lpandza.restapi.dto.ProductDto;
 import com.lpandza.restapi.model.Product;
 import com.lpandza.restapi.repository.ProductRepository;
+import com.lpandza.restapi.request.ProductFilterRequest;
 import com.lpandza.restapi.request.ProductRequest;
 import com.lpandza.restapi.service.HnbApiService;
 import com.lpandza.restapi.service.ProductService;
+import com.lpandza.restapi.specificaton.ProductSpecification;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +27,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDto> getAll() {
-        return productRepository.findAll()
+    public List<ProductDto> getAll(ProductFilterRequest productFilterRequest) {
+        log.info("Getting all products with filters: {}", productFilterRequest);
+        ProductSpecification productSpecification = new ProductSpecification(productFilterRequest);
+        return productRepository.findAll(productSpecification)
                                 .stream()
                                 .map(product -> new ProductDto(
                                         product.getCode(),

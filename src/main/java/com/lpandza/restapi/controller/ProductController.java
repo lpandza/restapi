@@ -1,6 +1,7 @@
 package com.lpandza.restapi.controller;
 
 import com.lpandza.restapi.dto.ProductDto;
+import com.lpandza.restapi.request.ProductFilterRequest;
 import com.lpandza.restapi.request.ProductRequest;
 import com.lpandza.restapi.service.ProductService;
 import org.springframework.http.HttpStatus;
@@ -21,8 +22,8 @@ public class ProductController {
 
     //todo pagination
     @GetMapping
-    public ResponseEntity<List<ProductDto>> getAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(productService.getAll());
+    public ResponseEntity<List<ProductDto>> getAll(ProductFilterRequest productFilterRequest) {
+        return ResponseEntity.status(HttpStatus.OK).body(productService.getAll(productFilterRequest));
     }
 
     @PostMapping

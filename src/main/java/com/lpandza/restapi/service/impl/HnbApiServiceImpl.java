@@ -15,7 +15,7 @@ import java.util.List;
 @Slf4j
 @Service
 public class HnbApiServiceImpl implements HnbApiService {
-    private static final String EXCHANGE_PATH = "tecajn-eu";
+    private static final String EXCHANGE_PATH = "tecajn-eur";
     private static final String VERSION = "v3";
     private static final String CURRENCY_PARAM = "valuta";
     private static final String DEFAULT_CURRENCY = "USD";
