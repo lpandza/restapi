@@ -6,6 +6,7 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table
@@ -36,4 +37,24 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     private List<Review> reviews = new ArrayList<>();
+
+    public Product(String code, String name, BigDecimal priceEur, BigDecimal priceUsd, String description) {
+        this.code = code;
+        this.name = name;
+        this.priceEur = priceEur;
+        this.priceUsd = priceUsd;
+        this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(id, product.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }
