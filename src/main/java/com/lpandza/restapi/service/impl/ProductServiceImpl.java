@@ -1,5 +1,6 @@
 package com.lpandza.restapi.service.impl;
 
+import com.lpandza.restapi.dto.PopularProduct;
 import com.lpandza.restapi.dto.ProductDto;
 import com.lpandza.restapi.model.Product;
 import com.lpandza.restapi.repository.ProductRepository;
@@ -61,6 +62,11 @@ public class ProductServiceImpl implements ProductService {
                 ));
 
         log.info("Product saved successfully");
+    }
+
+    @Override
+    public List<PopularProduct> getTopProductsByRating() {
+        return productRepository.findTopProductsByAverageRating();
     }
 
     private void validateProductDoesNotExist(ProductRequest productRequest) {

@@ -1,5 +1,6 @@
 package com.lpandza.restapi.service;
 
+import com.lpandza.restapi.dto.PopularProduct;
 import com.lpandza.restapi.dto.ProductDto;
 import com.lpandza.restapi.request.ProductFilterRequest;
 import com.lpandza.restapi.request.ProductRequest;
@@ -10,4 +11,6 @@ public interface ProductService {
     List<ProductDto> getAll(ProductFilterRequest productFilterRequest);
 
     void save(ProductRequest productRequest);
+
+    List<PopularProduct> getTopProductsByRating();
 }

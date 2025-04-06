@@ -1,5 +1,6 @@
 package com.lpandza.restapi.controller;
 
+import com.lpandza.restapi.dto.PopularProduct;
 import com.lpandza.restapi.dto.ProductDto;
 import com.lpandza.restapi.request.ProductFilterRequest;
 import com.lpandza.restapi.request.ProductRequest;
@@ -20,7 +21,6 @@ public class ProductController {
         this.productService = productService;
     }
 
-    //todo pagination
     @GetMapping
     public ResponseEntity<List<ProductDto>> getAll(ProductFilterRequest productFilterRequest) {
         return ResponseEntity.status(HttpStatus.OK).body(productService.getAll(productFilterRequest));
@@ -30,5 +30,10 @@ public class ProductController {
     public ResponseEntity save(@RequestBody @Validated ProductRequest productRequest) {
         productService.save(productRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @GetMapping("/popular")
+    public ResponseEntity<List<PopularProduct>> getAll() {
+        return ResponseEntity.status(HttpStatus.OK).body(productService.getTopProductsByRating());
     }
 }
